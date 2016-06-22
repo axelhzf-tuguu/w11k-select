@@ -1,8 +1,8 @@
 /**
- * w11k-select - v0.6.4 - 2015-12-15
+ * w11k-select - v0.6.6 - 2016-06-22
  * https://github.com/w11k/w11k-select
  *
- * Copyright (c) 2015 WeigleWilczek GmbH
+ * Copyright (c) 2016 WeigleWilczek GmbH
  */
 'use strict';
 
@@ -358,6 +358,16 @@ angular.module('w11k.select').directive('w11kSelect', [
           $document.off('keyup', onEscPressed);
           jqWindow.off('resize', adjustHeight);
         });
+
+        scope.onKeyPressedOnDropDownToggle = function ($event) {
+          // enter or space
+          if ($event.keyCode === 13 || $event.keyCode === 32) {
+            $event.preventDefault();
+            $event.stopPropagation();
+
+            scope.dropdown.toggle();
+          }
+        };
 
         function updateHeader() {
           if (angular.isDefined(scope.config.header.text)) {
