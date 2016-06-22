@@ -18,8 +18,6 @@ angular.module('w11k.select').constant('w11kSelectConfig', {
   instance: {
     /** for form validation */
     required: false,
-    /** Hide checkboxes during single selection */
-    hideCheckboxes: false,
     /** single or multiple select */
     multiple: true,
     /** disable user interaction */
@@ -69,9 +67,7 @@ angular.module('w11k.select').constant('w11kSelectConfig', {
       marginBottom: '10px',
       /** static or manually calculated max height (disables internal height calculation) */
       maxHeight: undefined
-    },
-    /** when set to true, the clear-button is always visible. */
-    showClearAlways: false
+    }
   }
 });
 
@@ -356,6 +352,16 @@ angular.module('w11k.select').directive('w11kSelect', [
           $document.off('keyup', onEscPressed);
           jqWindow.off('resize', adjustHeight);
         });
+
+        scope.onKeyPressedOnDropDownToggle = function ($event) {
+          // enter or space
+          if ($event.keyCode === 13 || $event.keyCode === 32) {
+            $event.preventDefault();
+            $event.stopPropagation();
+
+            scope.dropdown.toggle();
+          }
+        };
 
         function updateHeader() {
           if (angular.isDefined(scope.config.header.text)) {
@@ -744,6 +750,11 @@ angular.module('w11k.select').directive('w11kSelect', [
         var hashCode = function (value) {
           var string;
           if (typeof value === 'object') {
+            if (value.id) {
+              return value.id;
+            } else if (value.key) {
+              return value.key;
+            }
             string = angular.toJson(value);
           }
           else {

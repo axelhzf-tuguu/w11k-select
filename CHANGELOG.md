@@ -1,5 +1,14 @@
 # w11k-select Changelog
 
+<a name="0.6.6"></a>
+## 0.6.6 (2016-06-22)
+
+
+### Bug Fixes
+
+* **tabIndex:** make w11k-select accessible via keyboard with the tab key
+
+
 <a name="0.6.2"></a>
 ## 0.6.2 (2015-07-06)
 
