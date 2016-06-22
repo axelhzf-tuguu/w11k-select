@@ -1,3 +1,9 @@
+/**
+ * w11k-select - v0.6.4 - 2015-12-15
+ * https://github.com/w11k/w11k-select
+ *
+ * Copyright (c) 2015 WeigleWilczek GmbH
+ */
 'use strict';
 
 angular.module('w11k.select', [
@@ -18,8 +24,6 @@ angular.module('w11k.select').constant('w11kSelectConfig', {
   instance: {
     /** for form validation */
     required: false,
-    /** Hide checkboxes during single selection */
-    hideCheckboxes: false,
     /** single or multiple select */
     multiple: true,
     /** disable user interaction */
@@ -69,9 +73,7 @@ angular.module('w11k.select').constant('w11kSelectConfig', {
       marginBottom: '10px',
       /** static or manually calculated max height (disables internal height calculation) */
       maxHeight: undefined
-    },
-    /** when set to true, the clear-button is always visible. */
-    showClearAlways: false
+    }
   }
 });
 
