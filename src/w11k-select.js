@@ -750,10 +750,12 @@ angular.module('w11k.select').directive('w11kSelect', [
         var hashCode = function (value) {
           var string;
           if (typeof value === 'object') {
-            if (value.id) {
-              return value.id;
-            } else if (value.key) {
-              return value.key;
+            if (value) {
+              if (value.id) {
+                return value.id;
+              } else if (value.key) {
+                return value.key;
+              }
             }
             string = angular.toJson(value);
           }
